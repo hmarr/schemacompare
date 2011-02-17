@@ -45,13 +45,13 @@ class Database(object):
         return self._tables
 
     def _load_indexes(self, table):
-        self.cursor.execute("SHOW INDEXES FROM %s" % table)
+        self.cursor.execute("SHOW INDEXES FROM `{0}`".format(table))
         parts = [IndexPart(*row) for row in self.cursor.fetchall()]
         key_fn = lambda i: i.key_name
         return [Index(group[1]) for group in itertools.groupby(parts, key_fn)]
 
     def _load_fields(self, table):
-        self.cursor.execute("DESCRIBE %s" % table)
+        self.cursor.execute("DESCRIBE `{0}`".format(table))
         return [Field(*row) for row in self.cursor.fetchall()]
 
     def _load_info(self, table):
