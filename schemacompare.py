@@ -202,8 +202,8 @@ def main():
 
     comparer = SchemaComparer(c1, c2)
 
-    if len(sys.argv) > 1:
-        table = sys.argv[1]
+    if len(args) > 1:
+        table = args[0]
 
         comparer.blank_line()
         comparer.output('Inspecting table {0}...'.format(table))
